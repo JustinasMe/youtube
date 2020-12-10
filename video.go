@@ -18,6 +18,7 @@ type Video struct {
 	Formats         FormatList
 	DASHManifestURL string // URI of the DASH manifest file
 	HLSManifestURL  string // URI of the HLS manifest file
+	Thumbnails      []Thumbnail
 }
 
 func (v *Video) parseVideoInfo(info string) error {
@@ -70,6 +71,8 @@ func (v *Video) parseVideoInfo(info string) error {
 
 	v.HLSManifestURL = prData.StreamingData.HlsManifestURL
 	v.DASHManifestURL = prData.StreamingData.DashManifestURL
+
+	v.Thumbnails = prData.VideoDetails.Thumbnail.Thumbnails
 
 	return nil
 }
